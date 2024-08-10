@@ -1,65 +1,119 @@
-# Week 5: Databases and Web Applications - Bridging the Gap 
+### Expense Tracker Application Documentation
 
-Great work last week! You've mastered data manipulation in your Expense Tracker. This week, we'll develop a web application using Node.js, Express, and MySQL to manage personal expenses. The application should provide user authentication and functionalities for adding, viewing, and (optionally) editing/deleting expenses.
+#### Overview
 
-## Submission: 
-* **Clone** this repo Not ~~Fork~~
-* You have been given starter code, use it , modify it as you work on this project
-* Test and commit your changes **on this repo**
+The Expense Tracker application is a simple web app designed to help users track their expenses and income. It is built using Express.js for the backend, with pure HTML, CSS, and vanilla JavaScript for the frontend. The application ensures that only authenticated users can access the root page by managing user sessions with cookies and local storage for persistent login.
 
-### Project Setup:
-**1.** Create a well-structured Node.js project directory with your server-side code.
+#### Features
 
-**2.** Install required dependencies including express, mysql, body-parser, and a password hashing library (e.g., bcryptjs).
+- **User Authentication and authorisation**: Users must log in to access the application. Authentication is managed using JSON Web Tokens (JWT) and cookies.
+- users can only have access of their own expense and incomes.
+- **Expense Tracking**: Users can add, view, and delete transactions (both expenses and incomes).
+- **Persistent Login**: User information is stored in local storage for persistent login, and cookies are used to manage sessions.
 
-**3.** Configure a connection to your MySQL database.
+#### Dependencies
 
-### Database Schema:
-**1.** Create Users table with columns for id (primary key), username (unique), and password (hashed).
+The following npm packages are used in this project:
 
-**2.** Create an Expenses table with columns for id (primary key), user_id (foreign key referencing Users.id), amount, date, and category.
+- **bcryptjs**: `^2.4.3` - Used for hashing passwords.
+- **colors**: `^1.4.0` - Provides color output for the terminal.
+- **cookie-parser**: `^1.4.6` - Middleware for handling cookies.
+- **cors**: `^2.8.5` - Provides Cross-Origin Resource Sharing (CORS) support.
+- **dotenv**: `^16.4.5` - Loads environment variables from a `.env` file.
+- **express**: `^4.19.2` - Web framework for Node.js.
+- **express-async-handler**: `^1.2.0` - Simplifies error handling in asynchronous Express route handlers.
+- **jsonwebtoken**: `^9.0.2` - Implements JSON Web Tokens for authentication.
+- **mysql2**: `^3.10.3` - MySQL client for Node.js.
+- **node-cron**: `^3.0.3` - Provides cron-like job scheduling for Node.js.
+- **nodemailer**: `^6.9.14` - Module for sending emails.
+- **nodemon**: `^3.1.4` - Automatically restarts the server on code changes.
 
-### User Authentication:
-**1.** Implement user registration and login functionalities (covered in previous assignment).
+#### Setup Instructions
 
-**2.** Securely store passwords using hashing techniques.
+1. **Clone the Repository**
 
-### Expense Management:
-**1.** Add Expense: Develop a functionality for authenticated users to add new expenses with details like amount, date, and category.
+   ```bash
+   git clone https://github.com/Powerlearnproject/week-5-assignment-Marcocholla01
+   cd week-5-assignment-Marcocholla01
+   ```
 
-### View Expenses: 
-**1.** Allow users to view their past expenses filtered by their user ID.
+2. **Install Dependencies**
 
-### (Optional): 
-Implement functionalities for authenticated users to edit or delete existing expenses (consider authorization and confirmation steps).
+   ```bash
+   npm install  or yarn add or pnpm install
+   ```
 
-### Security:
-**1.** Emphasize secure password storage (hashed, not plain text).
-**2.** Consider user authentication and authorization for accessing expense functionalities.
+3. **Create Database and Tables**
 
-### Deliverables:
+- Create a new MySQL database and run the SQL commands in `database.sql` file to create the necessary tables:
 
-**1.** A well-documented Node.js project directory with your server code.
+4. **Create Environment File**
 
-**2.** A clear README.md file explaining project setup, dependencies, functionalities, and instructions to run the application.
+- To create a `.env` file based on your `.env.example` file, follow these steps:
 
-**3.** A functional Node.js server demonstrating the required functionalities and interaction with the MySQL database.
+- **Locate the `.env.example` File**: Open the `.env.example` file to see the list of environment variables needed.
 
-### Bonus (Optional)
+- **Create the `.env` File**:
 
-1.1. Database Server Comparison:  
-Create a table comparing the following database server options (focusing on its role as a web application environment): 
-* MySQL
-* PostgreSQL
-* Microsoft SQL Server
-* Oracle Database
-* Node.js 
+  - In your project directory, navigate to the `config` directory (or create it if it doesn’t exist).
+  - Create a new file named `.env` in the `config` directory.
 
-**Include details like (Tabulate):**
+- **Add Environment Variables**:
 
-1. Type (Open-Source/Commercial)
-2. Target Audience
-3. Key Features
-4. Ease of Use
+  - Open the `.env` file in a text editor.
+  - Copy the contents from the `.env.example` file into the `.env` file.
+  - Replace placeholder values with your actual configuration settings.
 
-* Upload the table in a document or as a picture onto this repo. 
+5. **Run the Application**
+
+   ```bash
+   npm start
+   ```
+
+   To run the application with automatic restarts on code changes, use:
+
+   ```bash
+   npm run dev
+   ```
+
+#### Application Structure
+
+- **`/public`**: Contains static files like HTML, CSS, and JavaScript.
+- **`/routes`**: Contains route handlers for various endpoints.
+- **`/controllers`**: Contains functions for handling business logic.
+- **`/config`**: Contains database configurations .env files.
+- **`/middleware`**: Contains middleware functions for authentication, error handling, etc.
+- **`/utils`**: Contains utility functions and email configurations.
+- **`app.js`**: Main application file where the Express app is set up and middleware/routes are configured.
+- **`server.js`**: Is the entry point of the application.
+
+#### How It Works
+
+1. **Login**: Users access the login page and authenticate using their credentials. Upon successful login, a JWT is issued and stored in a cookie, while user information is stored in local storage.
+
+2. **Accessing the Root Page**: When a user tries to access the root page, the application checks for the presence of the JWT cookie and verifies its validity. If valid, the user is allowed to access the page; otherwise, they are redirected to the login page.
+
+3. **Managing Transactions**: Users can add, view, and delete transactions. The frontend interacts with the backend API to fetch and manage transaction data.
+
+4. **Persistent Login**: The JWT cookie and local storage ensure that users remain logged in between sessions.
+
+#### Frontend Components
+
+- **HTML**: Provides the structure of the web pages.
+- **CSS**: Styles the pages and components.
+- **JavaScript**: Handles client-side logic, including form submissions, displaying transaction data, and managing UI interactions.
+
+#### Security Considerations
+
+- **Password Hashing**: Passwords are hashed using bcryptjs before being stored in the database.
+- **JWT Authentication**: JSON Web Tokens are used to authenticate users and manage sessions securely.
+- **Secure Cookies**: Ensure that cookies are marked as `HttpOnly` and `Secure` to enhance security.
+
+#### Troubleshooting
+
+- **"Failed to fetch expenses"**: Ensure the database is running and the connection details in the `.env` file are correct.
+- **"Error removing transaction"**: Verify that the transaction ID is correct and that the transaction exists in the database.
+
+For further assistance or to report issues, please contact the project maintainer or refer to the project's issue tracker.
+
+---

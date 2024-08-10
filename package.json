@@ -1,0 +1,31 @@
+{
+  "name": "week-5-assignment-marcocholla01",
+  "version": "1.0.1",
+  "description": "\"A power learn project for auth and database management operations\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\"https://github.com/Powerlearnproject/week-5-assignment-Marcocholla01.git\""
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.10.3",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.14",
+    "nodemon": "^3.1.4"
+  },
+  "author": "Marcocholla01 ---- PAUL OUMA OCHOLLA",
+  "license": "MIT"
+}
