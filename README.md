@@ -33,8 +33,8 @@ The following npm packages are used in this project:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/Powerlearnproject/week-5-assignment-Marcocholla01
-   cd week-5-assignment-Marcocholla01
+   git clone https://github.com/Marcocholla01/Expense-tracker
+   cd Expense-tracker
    ```
 
 2. **Install Dependencies**
@@ -114,6 +114,6 @@ The following npm packages are used in this project:
 - **"Failed to fetch expenses"**: Ensure the database is running and the connection details in the `.env` file are correct.
 - **"Error removing transaction"**: Verify that the transaction ID is correct and that the transaction exists in the database.
 
-For further assistance or to report issues, please contact the project maintainer or refer to the project's issue tracker.
+For further assistance or to report issues, please contact [me](mailto:marcochollapaul01@gmail.com) or refer to the project's issue tracker.
 
 ---
